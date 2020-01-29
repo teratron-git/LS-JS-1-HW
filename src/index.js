@@ -1,4 +1,3 @@
-
 /* ДЗ 1 - Функции */
 
 /*
@@ -31,7 +30,7 @@ function returnFirstArgument(a) {
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, b=100) {
+function sumWithDefaults(a, b = 100) {
     return a + b;
 }
 
@@ -60,14 +59,8 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number=0) {
-
-    var x = number + 1;
-
-    return function() {
-        return x++;
-    };
-
+function returnCounter(number = 0) {
+    return () => ++number;
 }
 
 /*
@@ -98,18 +91,9 @@ function returnArgumentsArray(...numbers) {
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(F) { 
 
-    var arg=[];
-
-    for (var i = 1; i < arguments.length; i++) {
-
-        arg.push(arguments[i]);
-    }
-    
-    return function() {
-        return F.apply(null, arg);
-    };
+function bindFunction(F, ...args) {
+    return () => F.apply(null, args);
 }
 
 export {
