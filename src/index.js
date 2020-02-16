@@ -52,10 +52,8 @@ function prepend(what, where) {
 function findAllPSiblings(where) {
     let result = [];
 
-    for (let item of where.children) {
-        if (item.tagName === 'P') {
-            result.push(item.previousElementSibling);
-        }
+    for (let item of where.querySelectorAll('p')) {
+        result.push(item.previousElementSibling);
     }
 
     return result;
@@ -156,7 +154,7 @@ function collectDOMStat(root) {
     let tags = {};
     let classes = {};
 
-    function stats(element) {
+    (function stats(element) {
         let tag, classList;
 
         for (let child of element.childNodes) {
@@ -185,9 +183,7 @@ function collectDOMStat(root) {
                 texts++;
             }
         }
-    }
-
-    stats(root);
+    })(root);
 
     return {
         tags,
